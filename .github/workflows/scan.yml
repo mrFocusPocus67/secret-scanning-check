@@ -1,4 +1,4 @@
-name: Secret Scanning (Gitleaks + TruffleHog)
+name: Secret Scanning (Gitleaks + TruffleHog) - 20 Projects
 
 on:
   workflow_dispatch:
@@ -8,19 +8,41 @@ on:
 permissions:
   contents: read
 
-env:
-  TARGET_REPO: SasanLabs/VulnerableApp
-
 jobs:
-  scan:
+  secret-scan:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        target_repo: [
+          "adeyosemanputra/pygoat",
+          "we45/Vulnerable-Flask-App",
+          "mattvaldes/vulnerable-api",
+          "OWASP/DjanGoat",
+          "snyk/goof",
+          "0019-KDU/vulnerable-web-app",
+          "EyalSec/vulnerable-javascript",
+          "vulnerable-apps/vulnerable-react-app",
+          "SasanLabs/VulnerableApp",
+          "vulnerable-apps/vulnado",
+          "jerryhoff/WebGoat.NET",
+          "vulnerable-apps/ticketmagpie",
+          "interference-security/DVWS",
+          "vulnerable-apps/xvwa",
+          "vulnerable-apps/websheep",
+          "vulnerable-apps/Vulnerable-OTP-Application",
+          "OWASP/railsgoat",
+          "vulnerable-apps/vuln-graphql-ruby",
+          "dolevf/Damn-Vulnerable-GraphQL-Application",
+          "vulnerable-apps/vapi"
+        ]
 
     steps:
       - name: Checkout целевого проекта
         uses: actions/checkout@v4
         with:
-          repository: ${{ env.TARGET_REPO }}
+          repository: ${{ matrix.target_repo }}
           path: target
           fetch-depth: 0
 
@@ -43,22 +65,40 @@ jobs:
 
       - name: Запуск TruffleHog
         run: |
-          # --no-verification: не проверяем найденные ключи на живых сервисах (быстрее и безопаснее)
+          # --no-verification: не проверяем найденные ключи на живых сервисах
           trufflehog git file://$PWD/target \
             --json --no-update --no-verification \
             > trufflehog-results.json || true
 
-      - name: Сводка по результатам (Секреты)
+      - name: Сводка по результатам (Секреты) в консоль
         run: |
-          echo "Gitleaks:   $(jq 'length' gitleaks-results.json) находок"
-          echo "TruffleHog: $(wc -l < trufflehog-results.json) находок"
+          # Получаем имя проекта без слешей для красивого вывода
+          REPO_NAME=$(echo "${{ matrix.target_repo }}" | tr '/' '_')
+          
+          echo "РЕЗУЛЬТАТЫ ДЛЯ ПРОЕКТА: ${{ matrix.target_repo }}"
+          # Считаем Gitleaks (количество элементов в JSON массиве)
+          if [ -f gitleaks-results.json ]; then
+            G_COUNT=$(jq '. | length' gitleaks-results.json)
+          else
+            G_COUNT=0
+          fi
+          
+          # Считаем TruffleHog (количество строк в JSON, так как это построчный вывод)
+          if [ -f trufflehog-results.json ]; then
+            T_COUNT=$(wc -l < trufflehog-results.json)
+          else
+            T_COUNT=0
+          fi
+          
+          echo "Gitleaks:   $G_COUNT находок"
+          echo "TruffleHog: $T_COUNT находок"
         continue-on-error: true
 
       - name: Загрузка артефактов
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: secret-scanning-reports
+          name: reports-${{ strategy.job-index }}-${{ matrix.target_repo == 'snyk/goof' && 'goof' || 'project' }}
           path: |
             gitleaks-results.json
             trufflehog-results.json
