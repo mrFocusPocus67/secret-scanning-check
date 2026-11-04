@@ -1,0 +1,94 @@
+name: Полный пайплайн безопасности (30 проектов)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  security-scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+
+    steps:
+      - name: Checkout рабочего репозитория
+        uses: actions/checkout@v4
+
+      - name: Установка инструментов
+        run: |
+          # SCA
+          curl -sSfL https://github.com/google/osv-scanner/releases/latest/download/osv-scanner_linux_amd64 -o osv-scanner
+          chmod +x osv-scanner
+          sudo mv osv-scanner /usr/local/bin/
+          
+          # SAST
+          pip install semgrep
+          
+          # Secrets
+          curl -sSfL https://github.com/gitleaks/gitleaks/releases/download/v8.18.4/gitleaks_8.18.4_linux_x64.tar.gz | sudo tar -xz -C /usr/local/bin gitleaks
+          curl -sSfL https://raw.githubusercontent.com/trufflesecurity/trufflehog/main/scripts/install.sh | sudo sh -s -- -b /usr/local/bin
+
+      - name: Запуск пайплайна по всем проектам
+        run: |
+          REPOS=(
+            "adeyosemanputra/pygoat"
+            "we45/Vulnerable-Flask-App"
+            "mattvaldes/vulnerable-api"
+            "OWASP/DjanGoat"
+            "snyk/goof"
+            "0019-KDU/vulnerable-web-app"
+            "EyalSec/vulnerable-javascript"
+            "vulnerable-apps/vulnerable-react-app"
+            "SasanLabs/VulnerableApp"
+            "vulnerable-apps/vulnado"
+            "jerryhoff/WebGoat.NET"
+            "vulnerable-apps/ticketmagpie"
+            "interference-security/DVWS"
+            "vulnerable-apps/xvwa"
+            "vulnerable-apps/websheep"
+            "vulnerable-apps/Vulnerable-OTP-Application"
+            "OWASP/railsgoat"
+            "vulnerable-apps/vuln-graphql-ruby"
+            "dolevf/Damn-Vulnerable-GraphQL-Application"
+            "vulnerable-apps/vapi"
+            "juice-shop/juice-shop"
+            "digininja/DVWA"
+            "WebGoat/WebGoat"
+            "OWASP/NodeGoat"
+            "vulnshop/vulnshop"
+            "OWASP/IWA-Java"
+            "OWASP/vulnerable-java-app"
+            "vulnbookstore/VulnBookStore"
+            "dolevf/Damn-Vulnerable-GraphQL-Application"
+            "hahwul/dvma"
+          )
+
+          for REPO in "${REPOS[@]}"; do
+            echo "::group::Анализ репозитория $REPO"
+            
+            mkdir -p target
+            cd target
+            
+            if ! git clone --quiet https://github.com/$REPO.git . ; then
+              echo "Ошибка клонирования $REPO. Пропускаем."
+              cd ..
+              rm -rf target
+              echo "::endgroup::"
+              continue
+            fi
+            
+            echo "--- Этап 1: SCA (Зависимости) ---"
+            osv-scanner --lockfile=package-lock.json || true
+            
+            echo "--- Этап 2: SAST (Статический анализ) ---"
+            semgrep scan --config auto || true
+            
+            echo "--- Этап 3: Secrets (Поиск секретов) ---"
+            gitleaks detect --source . --no-banner || true
+            trufflehog git file://$PWD --no-update --no-verification || true
+            
+            cd ..
+            rm -rf target
+            
+            echo "::endgroup::"
+            echo "Проект $REPO успешно проверен."
+            echo ""
+          done
