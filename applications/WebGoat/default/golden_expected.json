@@ -1,0 +1,109 @@
+{
+  "application": "WebGoat",
+  "expected_secrets": [
+    {
+      "id": "W01",
+      "category": "Sensitive Data Exposure",
+      "type": "Hardcoded Admin Password / Link",
+      "cwe": "CWE-798",
+      "description": "Hardcoded passwords and admin links for challenges.",
+      "found_in_scanner": [
+        {
+          "file": "src/main/java/org/owasp/webgoat/lessons/challenges/SolutionConstants.java",
+          "match": "ADMIN_PASSWORD_LINK = REDACTED"
+        },
+        {
+          "file": "src/main/java/org/owasp/webgoat/lessons/challenges/challenge7/Assignment7.java",
+          "match": "ADMIN_PASSWORD_LINK = REDACTED"
+        }
+      ],
+      "expected_in_scanner": true
+    },
+    {
+      "id": "W02",
+      "category": "Sensitive Data Exposure",
+      "type": "Hardcoded JWT User Password",
+      "cwe": "CWE-798",
+      "description": "Hardcoded passwords for JWT lessons.",
+      "found_in_scanner": [
+        {
+          "file": "src/main/java/org/owasp/webgoat/lessons/jwt/JWTRefreshEndpoint.java",
+          "match": "PASSWORD = REDACTED"
+        },
+        {
+          "file": "src/main/java/org/owasp/webgoat/lessons/jwt/JWTRefreshEndpoint.java",
+          "match": "JWT_PASSWORD = REDACTED"
+        },
+        {
+          "file": "src/main/resources/js/jwt-refresh.js",
+          "match": "password: REDACTED"
+        }
+      ],
+      "expected_in_scanner": true
+    },
+    {
+      "id": "W03",
+      "category": "Cryptographic Issues",
+      "type": "Private Keys (Crypto Lesson)",
+      "cwe": "CWE-321",
+      "description": "Private keys used in cryptography lessons.",
+      "found_in_scanner": [
+        {
+          "file": "src/main/java/org/owasp/webgoat/lessons/cryptography/CryptoUtil.java",
+          "match": "Private Key (REDACTED)"
+        }
+      ],
+      "expected_in_scanner": true
+    },
+    {
+      "id": "W04",
+      "category": "Cryptographic Issues",
+      "type": "JSON Web Tokens (JWT) in Tests",
+      "cwe": "CWE-347",
+      "description": "JWT tokens hardcoded in test files and HTML lessons.",
+      "found_in_scanner": [
+        {
+          "file": "src/test/java/org/owasp/webgoat/lessons/jwt/JWTFinalEndpointTest.java",
+          "match": "JWT (REDACTED)"
+        },
+        {
+          "file": "src/test/java/org/owasp/webgoat/lessons/jwt/JWTRefreshEndpointTest.java",
+          "match": "JWT (REDACTED)"
+        },
+        {
+          "file": "src/main/resources/lessons/jwt/html/JWT.html",
+          "match": "JWT (REDACTED)"
+        }
+      ],
+      "expected_in_scanner": true
+    },
+    {
+      "id": "W05",
+      "category": "Security Misconfiguration",
+      "type": "CI/CD Secrets (AWS Token)",
+      "cwe": "CWE-798",
+      "description": "AWS access token in Travis CI configuration.",
+      "found_in_scanner": [
+        {
+          "file": ".travis.yml",
+          "match": "aws-access-token (REDACTED)"
+        }
+      ],
+      "expected_in_scanner": true
+    },
+    {
+      "id": "W06",
+      "category": "Security Misconfiguration",
+      "type": "OpenShift User Token",
+      "cwe": "CWE-798",
+      "description": "OpenShift token in Helm documentation.",
+      "found_in_scanner": [
+        {
+          "file": "platformQuickStarts/helm/Readme.md",
+          "match": "openshift-user-token (REDACTED)"
+        }
+      ],
+      "expected_in_scanner": true
+    }
+  ]
+}
