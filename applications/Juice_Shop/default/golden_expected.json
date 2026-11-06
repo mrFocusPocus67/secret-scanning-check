@@ -1,1 +1,117 @@
-
+{
+  "application": "OWASP Juice Shop",
+  "expected_secrets": [
+    {
+      "id": "SEC-01",
+      "category": "Sensitive Data Exposure",
+      "type": "Hardcoded Passwords (Base64-encoded)",
+      "cwe": "CWE-798",
+      "description": "Test user passwords and admin secrets hardcoded in data and test files.",
+      "found_in_scanner": [
+        {
+          "file": "data/static/users.yml",
+          "match": "bW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI="
+        },
+        {
+          "file": "test/api/erasure-request.test.ts",
+          "match": "bW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI="
+        },
+        {
+          "file": "routes/login.ts",
+          "match": "bW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI="
+        }
+      ],
+      "expected_in_scanner": true
+    },
+    {
+      "id": "SEC-02",
+      "category": "Cryptographic Issues",
+      "type": "JSON Web Tokens (JWT)",
+      "cwe": "CWE-347",
+      "description": "Hardcoded JWT tokens found in test files and server logic.",
+      "found_in_scanner": [
+        {
+          "file": "test/server/verify.unit.test.ts",
+          "match": "eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0..."
+        },
+        {
+          "file": "test/server/currentUserSpec.ts",
+          "match": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9..."
+        }
+      ],
+      "expected_in_scanner": true
+    },
+    {
+      "id": "SEC-03",
+      "category": "Sensitive Data Exposure",
+      "type": "Private RSA Keys",
+      "cwe": "CWE-312",
+      "description": "RSA Private Keys found in infrastructure and lib code.",
+      "found_in_scanner": [
+        {
+          "file": "infrastructure/terraform/networking.tf",
+          "match": "-----BEGIN RSA PRIVATE KEY-----..."
+        },
+        {
+          "file": "lib/insecurity.js",
+          "match": "-----BEGIN RSA PRIVATE KEY-----..."
+        },
+        {
+          "file": "test/files/passkeyVictimCredential.json",
+          "match": "-----BEGIN PRIVATE KEY-----..."
+        }
+      ],
+      "expected_in_scanner": true
+    },
+    {
+      "id": "SEC-04",
+      "category": "Broken Authentication",
+      "type": "TOTP Secrets / 2FA Keys",
+      "cwe": "CWE-798",
+      "description": "Hardcoded 2FA secrets found in test files and data.",
+      "found_in_scanner": [
+        {
+          "file": "data/static/users.yml",
+          "match": "IFTXE3SPOEYVURT2MRYGI52TKJ4HC3KH"
+        },
+        {
+          "file": "test/api/2fa.test.ts",
+          "match": "KDR5FXSOLNV6A5UAQYCKROSJZF7SVML7"
+        }
+      ],
+      "expected_in_scanner": true
+    },
+    {
+      "id": "SEC-05",
+      "category": "Sensitive Data Exposure",
+      "type": "Web3 Private Keys / Wallet Addresses",
+      "cwe": "CWE-798",
+      "description": "Ethereum private keys and token addresses found in test files.",
+      "found_in_scanner": [
+        {
+          "file": "test/api/checkKeys.test.ts",
+          "match": "0x02c7a2a93289c9fbda5990bac6596993e9bb0a8d3f178175a80b7cfd983983f506"
+        },
+        {
+          "file": "frontend/src/app/faucet/faucet.component.ts",
+          "match": "0x36435796Ca9be2bf150CE0dECc2D8Fab5C4d6E13"
+        }
+      ],
+      "expected_in_scanner": true
+    },
+    {
+      "id": "SEC-06",
+      "category": "Security Misconfiguration",
+      "type": "CI/CD Tokens / Secrets",
+      "cwe": "CWE-798",
+      "description": "Tokens hardcoded in Travis CI configuration.",
+      "found_in_scanner": [
+        {
+          "file": ".travis.yml",
+          "match": "4c1b01eba7eeb3e9af53beaa4f097b5a49754c4edb8e95d59088bac519607637"
+        }
+      ],
+      "expected_in_scanner": true
+    }
+  ]
+}
