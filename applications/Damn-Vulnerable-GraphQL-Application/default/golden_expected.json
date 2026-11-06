@@ -1,0 +1,23 @@
+{
+  "application": "Damn-Vulnerable-GraphQL-Application",
+  "expected_secrets": [
+    {
+      "id": "GQL01",
+      "category": "Cryptographic Issues",
+      "type": "Hardcoded JWT Tokens in Tests",
+      "cwe": "CWE-798",
+      "description": "JWT tokens hardcoded in test files for authentication testing.",
+      "found_in_scanner": [
+        {
+          "file": "tests/test_auth.py",
+          "match": "JWT (REDACTED)"
+        },
+        {
+          "file": "tests/query.py",
+          "match": "JWT (REDACTED)"
+        }
+      ],
+      "expected_in_scanner": true
+    }
+  ]
+}
