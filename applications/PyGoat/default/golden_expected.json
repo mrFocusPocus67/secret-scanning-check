@@ -1,0 +1,105 @@
+{
+  "application": "PyGoat",
+  "expected_secrets": [
+    {
+      "id": "PG01",
+      "category": "Sensitive Data Exposure",
+      "type": "Hardcoded Passwords in Labs",
+      "cwe": "CWE-798",
+      "description": "Hardcoded passwords in standalone labs (auth failure, SQL injection, etc.).",
+      "found_in_scanner": [
+        {
+          "file": "dockerized_labs/auth_failure_lab/app.py",
+          "match": "password: REDACTED"
+        },
+        {
+          "file": "introduction/views.py",
+          "match": "password=REDACTED"
+        }
+      ],
+      "expected_in_scanner": true
+    },
+    {
+      "id": "PG02",
+      "category": "Sensitive Data Exposure",
+      "type": "API Keys (Stripe, AWS)",
+      "cwe": "CWE-798",
+      "description": "Hardcoded Stripe and AWS keys in security misconfiguration lab.",
+      "found_in_scanner": [
+        {
+          "file": "dockerized_labs/sec_misconfig/app.py",
+          "match": "stripe-access-token (REDACTED)"
+        },
+        {
+          "file": "dockerized_labs/sec_misconfig/app.py",
+          "match": "AWS_ACCESS_KEY = REDACTED"
+        }
+      ],
+      "expected_in_scanner": true
+    },
+    {
+      "id": "PG03",
+      "category": "Cryptographic Issues",
+      "type": "Encryption Keys",
+      "cwe": "CWE-321",
+      "description": "Hardcoded encryption keys in package injection lab.",
+      "found_in_scanner": [
+        {
+          "file": "dockerized_labs/package_injection_lab/app.py",
+          "match": "encryption_key: REDACTED"
+        }
+      ],
+      "expected_in_scanner": true
+    },
+    {
+      "id": "PG04",
+      "category": "Cryptographic Issues",
+      "type": "JSON Web Tokens (JWT)",
+      "cwe": "CWE-347",
+      "description": "JWT tokens hardcoded in JavaScript files for A7/A9 labs.",
+      "found_in_scanner": [
+        {
+          "file": "pygoat/introduction/static/js/a7.js",
+          "match": "JWT (REDACTED)"
+        },
+        {
+          "file": "pygoat/introduction/static/js/a9.js",
+          "match": "JWT (REDACTED)"
+        }
+      ],
+      "expected_in_scanner": true
+    },
+    {
+      "id": "PG05",
+      "category": "Sensitive Data Exposure",
+      "type": "Database Connection Strings (Postgres)",
+      "cwe": "CWE-798",
+      "description": "PostgreSQL connection strings with credentials in security misconfiguration lab.",
+      "found_in_scanner": [
+        {
+          "file": "dockerized_labs/sec_misconfig/app.py",
+          "match": "Postgres connection string (REDACTED)"
+        }
+      ],
+      "expected_in_scanner": true
+    },
+    {
+      "id": "PG06",
+      "category": "Sensitive Data Exposure",
+      "type": "Third-party Keys in Dependencies",
+      "cwe": "CWE-798",
+      "description": "Private keys, Gumroad keys, and URIs found in Python site-packages.",
+      "found_in_scanner": [
+        {
+          "file": "lib/python3.10/site-packages/allauth/socialaccount/providers/apple/tests.py",
+          "match": "PrivateKey (REDACTED)"
+        },
+        {
+          "file": "lib/python3.10/site-packages/django_allauth-0.51.0.dist-info/RECORD",
+          "match": "Gumroad (REDACTED)"
+        }
+      ],
+      "expected_in_scanner": true
+    }
+  ]
+}
