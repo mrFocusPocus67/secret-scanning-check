@@ -1,0 +1,95 @@
+{
+  "application": "NodeGoat",
+  "expected_secrets": [
+    {
+      "id": "NG01",
+      "category": "Sensitive Data Exposure",
+      "type": "Hardcoded API Key (ZAP)",
+      "cwe": "CWE-798",
+      "description": "ZAP API key hardcoded in configuration files.",
+      "found_in_scanner": [
+        {
+          "file": "config/env/test.js",
+          "match": "zapApiKey: REDACTED"
+        },
+        {
+          "file": "config/env/development.js",
+          "match": "zapApiKey: REDACTED"
+        }
+      ],
+      "expected_in_scanner": true
+    },
+    {
+      "id": "NG02",
+      "category": "Cryptographic Issues",
+      "type": "Private Keys (SSL/TLS)",
+      "cwe": "CWE-321",
+      "description": "Private keys for SSL/TLS certificates committed to the repository.",
+      "found_in_scanner": [
+        {
+          "file": "artifacts/cert/server.key",
+          "match": "Private Key (REDACTED)"
+        },
+        {
+          "file": "app/cert/key.pem",
+          "match": "Private Key (REDACTED)"
+        }
+      ],
+      "expected_in_scanner": true
+    },
+    {
+      "id": "NG03",
+      "category": "Sensitive Data Exposure",
+      "type": "Database Connection Strings",
+      "cwe": "CWE-798",
+      "description": "MongoDB connection strings with credentials hardcoded in configuration.",
+      "found_in_scanner": [
+        {
+          "file": "config/env/all.js",
+          "match": "MongoDB connection string (REDACTED)"
+        },
+        {
+          "file": "server.js",
+          "match": "MongoDB connection string (REDACTED)"
+        }
+      ],
+      "expected_in_scanner": true
+    },
+    {
+      "id": "NG04",
+      "category": "Sensitive Data Exposure",
+      "type": "Cloud Provider Keys (AWS, Box)",
+      "cwe": "CWE-798",
+      "description": "AWS and Box keys found in third-party dependencies.",
+      "found_in_scanner": [
+        {
+          "file": "node_modules/forever/node_modules/cliff/node_modules/winston/node_modules/request/tests/test-s3.js",
+          "match": "AWS Key (REDACTED)"
+        },
+        {
+          "file": "node_modules/helmet/package.json",
+          "match": "Box Key (REDACTED)"
+        }
+      ],
+      "expected_in_scanner": true
+    },
+    {
+      "id": "NG05",
+      "category": "Sensitive Data Exposure",
+      "type": "Generic URI with Credentials",
+      "cwe": "CWE-798",
+      "description": "URIs containing embedded credentials in dependencies.",
+      "found_in_scanner": [
+        {
+          "file": "node_modules/express/lib/request.js",
+          "match": "URI with credentials (REDACTED)"
+        },
+        {
+          "file": "node_modules/forever/node_modules/winston/node_modules/request/tests/test-basic-auth.js",
+          "match": "URI with credentials (REDACTED)"
+        }
+      ],
+      "expected_in_scanner": true
+    }
+  ]
+}
