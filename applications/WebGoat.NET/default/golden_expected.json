@@ -1,0 +1,19 @@
+{
+  "application": "WebGoat.NET",
+  "expected_secrets": [
+    {
+      "id": "WGNET01",
+      "category": "Sensitive Data Exposure",
+      "type": "Database Connection Strings (SQL Server)",
+      "cwe": "CWE-798",
+      "description": "SQL Server connection strings hardcoded in log4net configuration.",
+      "found_in_scanner": [
+        {
+          "file": "WebGoat/lib/log4net.xml",
+          "match": "SQLServer connection string (REDACTED)"
+        }
+      ],
+      "expected_in_scanner": true
+    }
+  ]
+}
