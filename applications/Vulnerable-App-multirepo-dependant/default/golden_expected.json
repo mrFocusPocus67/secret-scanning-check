@@ -1,0 +1,19 @@
+{
+  "application": "Vulnerable-App-multirepo-dependant",
+  "expected_secrets": [
+    {
+      "id": "V01",
+      "category": "Cryptographic Issues",
+      "type": "Private Key (JWT Configuration)",
+      "cwe": "CWE-321",
+      "description": "Private key used for JWT signing in the shared library configuration.",
+      "found_in_scanner": [
+        {
+          "file": "vulnerable-shared-lib/src/main/java/org/sasanlabs/shared/config/SharedJWTConfig.java",
+          "match": "Private Key (REDACTED)"
+        }
+      ],
+      "expected_in_scanner": true
+    }
+  ]
+}
