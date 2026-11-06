@@ -1,0 +1,6 @@
+{"File":"app/src/main/java/com/capstone/controllers/ExposedResourceController.java","Commit":"634b18c12e0ec9a1dd7cb3cbbac8c176e24ddf57","RuleID":"JDBC","Secret":"REDACTED"}
+{"File":"app/src/main/java/com/capstone/controllers/ExposedResourceController.java","Commit":"634b18c12e0ec9a1dd7cb3cbbac8c176e24ddf57","RuleID":"GoogleGeminiAPIKey","Secret":"REDACTED"}
+{"File":"app/src/main/java/com/capstone/controllers/ExposedResourceController.java","Commit":"cf0262458a071ab5ccebcc5795c27615042260e1","RuleID":"JDBC","Secret":"REDACTED"}
+{"File":"app/src/main/java/com/capstone/controllers/ExposedResourceController.java","Commit":"cf0262458a071ab5ccebcc5795c27615042260e1","RuleID":"JDBC","Secret":"REDACTED"}
+{"File":"app/src/main/resources/application-docker.yml","Commit":"fea7c6aae1c91a7986c5a8b12f022665951337db","RuleID":"JDBC","Secret":"REDACTED"}
+{"File":"app/src/main/resources/application.properties","Commit":"7c0aa831b2397214d9aa2891dc5c31459ff0472b","RuleID":"JDBC","Secret":"REDACTED"}

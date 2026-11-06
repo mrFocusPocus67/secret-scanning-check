@@ -1,0 +1,23 @@
+[
+ {
+  "RuleID": "generic-api-key",
+  "Description": "Detected a Generic API Key, potentially exposing access to various services and sensitive operations.",
+  "StartLine": 61,
+  "EndLine": 61,
+  "StartColumn": 18,
+  "EndColumn": 43,
+  "Match": "password\":\"REDACTED\"",
+  "Secret": "REDACTED",
+  "File": "test/unit/request-error-handler.test.cjs",
+  "SymlinkFile": "",
+  "Commit": "5133048f584449fc480e7d1f366ef3d2477aefb9",
+  "Link": "https://github.com/haxtheweb/haxcms-nodejs/blob/5133048f584449fc480e7d1f366ef3d2477aefb9/test/unit/request-error-handler.test.cjs#L61",
+  "Entropy": 3.6644979,
+  "Author": "Claude",
+  "Email": "noreply@anthropic.com",
+  "Date": "2026-10-16T03:54:13Z",
+  "Message": "Security (PR8-4): don't log raw request bodies on body-parser errors\n\nThe final express error handler console.error'd the whole error object, which\nfor body-parser failures includes err.body (the full raw request body, e.g.\nlogin credentials) and answered 500. Move the handler to\nsrc/lib/requestErrorHandler.js: body-parser errors (entity.parse.failed,\nentity.too.large, ...) now answer 400/413/415 with the existing\n{status, message} JSON envelope and log only the error type and a truncated,\ncontrol-char-stripped message. Unknown errors that still carry a body are\nlogged without it. ENOENT-\u003e404 and multer-limit-\u003e413 behaviour is unchanged.\n\nCo-Authored-By: Claude Opus 5.5 \u003cnoreply@anthropic.com\u003e\nClaude-Session: https://claude.ai/code/session_013J4JEf3WfrBgaePbuRC7uF",
+  "Tags": [],
+  "Fingerprint": "5133048f584449fc480e7d1f366ef3d2477aefb9:test/unit/request-error-handler.test.cjs:generic-api-key:61"
+ }
+]

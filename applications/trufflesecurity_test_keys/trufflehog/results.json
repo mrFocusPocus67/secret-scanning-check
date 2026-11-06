@@ -1,0 +1,4 @@
+{"File":"new_key","Commit":"0416560b1330d8ac42045813251d85c688717eaf","RuleID":"AWS","Secret":"REDACTED"}
+{"File":"keys","Commit":"fbc14303ffbf8fb1c2c1914e8dda7d0121633aca","RuleID":"AWS","Secret":"REDACTED"}
+{"File":"keys","Commit":"77b2a3e56973785a52ba4ae4b8dac61d4bac016f","RuleID":"URI","Secret":"REDACTED"}
+{"File":"keys","Commit":"77b2a3e56973785a52ba4ae4b8dac61d4bac016f","RuleID":"PrivateKey","Secret":"REDACTED"}

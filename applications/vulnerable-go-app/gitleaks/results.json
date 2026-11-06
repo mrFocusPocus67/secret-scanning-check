@@ -1,0 +1,23 @@
+[
+ {
+  "RuleID": "generic-api-key",
+  "Description": "Detected a Generic API Key, potentially exposing access to various services and sensitive operations.",
+  "StartLine": 48,
+  "EndLine": 48,
+  "StartColumn": 2,
+  "EndColumn": 51,
+  "Match": "ENCRYPTION_KEY=REDACTED",
+  "Secret": "REDACTED",
+  "File": ".env",
+  "SymlinkFile": "",
+  "Commit": "4bd4bfd713b8b88b32431d6bd89fddf6b0ab9c36",
+  "Link": "https://github.com/ryanmcmorrowsnyk/vulnerable-go-app/blob/4bd4bfd713b8b88b32431d6bd89fddf6b0ab9c36/.env#L48",
+  "Entropy": 4.2149973,
+  "Author": "ryanmcmorrowsnyk",
+  "Email": "ryan.mcmorrow@snyk.io",
+  "Date": "2026-03-06T13:54:34Z",
+  "Message": "Initial commit: Intentionally vulnerable Go/Gin application\n\nFeatures:\n- 80+ vulnerable Go dependencies from 2019-2020\n- Expected 200+ total vulnerabilities\n- Gin v1.4.0 web framework\n- 20+ code-level vulnerabilities (SAST)\n- OWASP Top 10 coverage\n\nVulnerabilities include:\n- SQL Injection, Command Injection, Path Traversal\n- XSS, SSRF, Code Execution\n- XXE, YAML injection, Insecure deserialization\n- Missing authentication, IDOR, Mass Assignment\n- Hardcoded secrets, Weak crypto (MD5)\n\nHigh-CVE packages:\n- jwt-go v3.2.0 (CVE-2020-26160)\n- gin v1.4.0 (XSS, path traversal)\n- yaml.v2 v2.2.2 (deserialization)\n- golang.org/x/* packages with multiple CVEs\n\nDesigned for security testing and remediation tool validation.\nRequires Go 1.13+ to build.\n\nCo-Authored-By: Claude Sonnet 4.5 \u003cnoreply@anthropic.com\u003e",
+  "Tags": [],
+  "Fingerprint": "4bd4bfd713b8b88b32431d6bd89fddf6b0ab9c36:.env:generic-api-key:48"
+ }
+]

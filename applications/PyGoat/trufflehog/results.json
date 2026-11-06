@@ -1,0 +1,8 @@
+{"File":"dockerized_labs/sec_misconfig/app.py","Commit":"6bd0973a9064cd348dd54c62024506db0ea96bf2","RuleID":"Postgres","Secret":"REDACTED"}
+{"File":"dockerized_labs/sec_misconfig/app.py","Commit":"332f43fe82f9844dfdd498f3bcbf3d53178fc41d","RuleID":"Postgres","Secret":"REDACTED"}
+{"File":"lib/python3.10/site-packages/allauth/socialaccount/providers/apple/tests.py","Commit":"41b7ddcaf866d95067dd5f1d9aeba13bf4d641de","RuleID":"PrivateKey","Secret":"REDACTED"}
+{"File":"lib/python3.10/site-packages/django_allauth-0.51.0.dist-info/RECORD","Commit":"41b7ddcaf866d95067dd5f1d9aeba13bf4d641de","RuleID":"Gumroad","Secret":"REDACTED"}
+{"File":"lib/python3.10/site-packages/django_allauth-0.51.0.dist-info/RECORD","Commit":"41b7ddcaf866d95067dd5f1d9aeba13bf4d641de","RuleID":"Gumroad","Secret":"REDACTED"}
+{"File":"lib/python3.10/site-packages/django_allauth-0.51.0.dist-info/RECORD","Commit":"41b7ddcaf866d95067dd5f1d9aeba13bf4d641de","RuleID":"Gumroad","Secret":"REDACTED"}
+{"File":"lib/python3.10/site-packages/pip/_vendor/urllib3/util/url.py","Commit":"41b7ddcaf866d95067dd5f1d9aeba13bf4d641de","RuleID":"URI","Secret":"REDACTED"}
+{"File":"lib/python3.10/site-packages/urllib3/util/url.py","Commit":"41b7ddcaf866d95067dd5f1d9aeba13bf4d641de","RuleID":"URI","Secret":"REDACTED"}

@@ -1,0 +1,8 @@
+{"File":"Dockerfile","Commit":"ddf846149093afecd0e1b42f92f41aa341b15ee5","RuleID":"Stripe","Secret":"REDACTED"}
+{"File":"kubernetes/deployment.yaml","Commit":"ddf846149093afecd0e1b42f92f41aa341b15ee5","RuleID":"Stripe","Secret":"REDACTED"}
+{"File":"kubernetes/secrets.yaml","Commit":"ddf846149093afecd0e1b42f92f41aa341b15ee5","RuleID":"Stripe","Secret":"REDACTED"}
+{"File":"kubernetes/secrets.yaml","Commit":"ddf846149093afecd0e1b42f92f41aa341b15ee5","RuleID":"Stripe","Secret":"REDACTED"}
+{"File":".env","Commit":"ddf846149093afecd0e1b42f92f41aa341b15ee5","RuleID":"Stripe","Secret":"REDACTED"}
+{"File":"docker-compose.yml","Commit":"ddf846149093afecd0e1b42f92f41aa341b15ee5","RuleID":"Stripe","Secret":"REDACTED"}
+{"File":"terraform/variables.tf","Commit":"ddf846149093afecd0e1b42f92f41aa341b15ee5","RuleID":"Stripe","Secret":"REDACTED"}
+{"File":"config/secrets.js","Commit":"ddf846149093afecd0e1b42f92f41aa341b15ee5","RuleID":"Stripe","Secret":"REDACTED"}

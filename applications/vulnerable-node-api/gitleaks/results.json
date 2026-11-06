@@ -1,0 +1,23 @@
+[
+ {
+  "RuleID": "stripe-access-token",
+  "Description": "Found a Stripe Access Token, posing a risk to payment processing services and sensitive financial data.",
+  "StartLine": 5,
+  "EndLine": 5,
+  "StartColumn": 22,
+  "EndColumn": 50,
+  "Match": "REDACTED'",
+  "Secret": "REDACTED",
+  "File": "src/service/index.js",
+  "SymlinkFile": "",
+  "Commit": "1f8fed353712940752a7bd9d7ddff06a65fb4791",
+  "Link": "https://github.com/Dishan-Chalana/vulnerable-node-api/blob/1f8fed353712940752a7bd9d7ddff06a65fb4791/src/service/index.js#L5",
+  "Entropy": 4.593069,
+  "Author": "Dishan Chalana",
+  "Email": "dishanchalana1999@gmail.com",
+  "Date": "2026-03-01T15:36:15Z",
+  "Message": "Initial commit",
+  "Tags": [],
+  "Fingerprint": "1f8fed353712940752a7bd9d7ddff06a65fb4791:src/service/index.js:stripe-access-token:5"
+ }
+]

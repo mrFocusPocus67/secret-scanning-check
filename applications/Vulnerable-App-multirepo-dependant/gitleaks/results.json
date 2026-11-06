@@ -1,0 +1,23 @@
+[
+ {
+  "RuleID": "private-key",
+  "Description": "Identified a Private Key, which may compromise cryptographic security and sensitive data encryption.",
+  "StartLine": 14,
+  "EndLine": 29,
+  "StartColumn": 15,
+  "EndColumn": 43,
+  "Match": "REDACTED",
+  "Secret": "REDACTED",
+  "File": "vulnerable-shared-lib/src/main/java/org/sasanlabs/shared/config/SharedJWTConfig.java",
+  "SymlinkFile": "",
+  "Commit": "13fe54e4764532e2d621867ee4690aa35c68c75f",
+  "Link": "https://github.com/Security-Phoenix-demo/Vulnerable-App-multirepo-dependant/blob/13fe54e4764532e2d621867ee4690aa35c68c75f/vulnerable-shared-lib/src/main/java/org/sasanlabs/shared/config/SharedJWTConfig.java#L14-L29",
+  "Entropy": 5.5477476,
+  "Author": "franksec42",
+  "Email": "fc@securityphoenix.com",
+  "Date": "2026-03-21T12:55:25Z",
+  "Message": "Add VulnerableApp-dependent: cross-repo vulnerable shared library and microservice\n\nMulti-module Gradle project containing:\n- vulnerable-shared-lib: Broken sanitizers, vulnerable models, hardcoded configs,\n  unsafe JSON/XML utilities. Transitive deps on log4j 2.14.1, commons-text 1.8,\n  jackson-databind 2.9.8, snakeyaml 1.26.\n- vulnerable-service: Spring Boot microservice (port 9091) with taint relay to\n  VulnerableApp, broken sanitizer usage, and path-traversal-prone file handling.\n\nSupports local path and Maven artifact dependency modes via -PuseLocal flag.\n\nCo-Authored-By: Claude Opus 4.6 (1M context) \u003cnoreply@anthropic.com\u003e",
+  "Tags": [],
+  "Fingerprint": "13fe54e4764532e2d621867ee4690aa35c68c75f:vulnerable-shared-lib/src/main/java/org/sasanlabs/shared/config/SharedJWTConfig.java:private-key:14"
+ }
+]
