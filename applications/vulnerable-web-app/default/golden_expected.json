@@ -1,0 +1,122 @@
+{
+  "application": "vulnerable-web-app",
+  "expected_secrets": [
+    {
+      "id": "VWA01",
+      "category": "A07:2021 Identification and Authentication Failures",
+      "type": "Stripe API Keys (Publishable + Secret)",
+      "cwe": "CWE-798",
+      "description": "Stripe API keys hardcoded in config/secrets.js, .env, Dockerfile, and Kubernetes manifests.",
+      "found_in_scanner": [
+        {"file": "config/secrets.js", "match": "publishableKey / secretKey (REDACTED)"},
+        {"file": ".env", "match": "STRIPE_PUBLISHABLE_KEY / STRIPE_SECRET_KEY (REDACTED)"},
+        {"file": "Dockerfile", "match": "Stripe token (REDACTED)"},
+        {"file": "kubernetes/secrets.yaml", "match": "STRIPE_SECRET_KEY (REDACTED)"}
+      ],
+      "expected_in_scanner": true
+    },
+    {
+      "id": "VWA02",
+      "category": "A07:2021 Identification and Authentication Failures",
+      "type": "Slack Bot Token & Signing Secret",
+      "cwe": "CWE-798",
+      "description": "Slack bot tokens and signing secrets in config/secrets.js, .env, and Kubernetes secrets.",
+      "found_in_scanner": [
+        {"file": "config/secrets.js", "match": "slack bot token / signingSecret (REDACTED)"},
+        {"file": ".env", "match": "SLACK_BOT_TOKEN / SLACK_SIGNING_SECRET (REDACTED)"},
+        {"file": "kubernetes/secrets.yaml", "match": "SLACK_BOT_TOKEN (REDACTED)"}
+      ],
+      "expected_in_scanner": true
+    },
+    {
+      "id": "VWA03",
+      "category": "A07:2021 Identification and Authentication Failures",
+      "type": "AWS Access Keys & Secrets",
+      "cwe": "CWE-798",
+      "description": "AWS credentials in Kubernetes secrets.",
+      "found_in_scanner": [
+        {"file": "kubernetes/secrets.yaml", "match": "AWS_SECRET_ACCESS_KEY (REDACTED)"}
+      ],
+      "expected_in_scanner": true
+    },
+    {
+      "id": "VWA04",
+      "category": "A07:2021 Identification and Authentication Failures",
+      "type": "SendGrid API Key",
+      "cwe": "CWE-798",
+      "description": "SendGrid API key hardcoded in Dockerfile and Kubernetes secrets.",
+      "found_in_scanner": [
+        {"file": "Dockerfile", "match": "SENDGRID_API_KEY (REDACTED)"},
+        {"file": "kubernetes/secrets.yaml", "match": "SENDGRID_API_KEY (REDACTED)"}
+      ],
+      "expected_in_scanner": true
+    },
+    {
+      "id": "VWA05",
+      "category": "A07:2021 Identification and Authentication Failures",
+      "type": "Database Passwords & Session Secrets",
+      "cwe": "CWE-259",
+      "description": "DB password and session secret in Kubernetes secrets.",
+      "found_in_scanner": [
+        {"file": "kubernetes/secrets.yaml", "match": "DB_PASSWORD / SESSION_SECRET (REDACTED)"}
+      ],
+      "expected_in_scanner": true
+    },
+    {
+      "id": "VWA06",
+      "category": "A07:2021 Identification and Authentication Failures",
+      "type": "GitHub Token",
+      "cwe": "CWE-798",
+      "description": "GitHub token in Kubernetes secrets.",
+      "found_in_scanner": [
+        {"file": "kubernetes/secrets.yaml", "match": "GITHUB_TOKEN (REDACTED)"}
+      ],
+      "expected_in_scanner": true
+    },
+    {
+      "id": "VWA07",
+      "category": "A07:2021 Identification and Authentication Failures",
+      "type": "Twilio Auth Token",
+      "cwe": "CWE-798",
+      "description": "Twilio auth token in .env and Kubernetes secrets.",
+      "found_in_scanner": [
+        {"file": ".env", "match": "TWILIO_AUTH_TOKEN (REDACTED)"},
+        {"file": "kubernetes/secrets.yaml", "match": "TWILIO_AUTH_TOKEN (REDACTED)"}
+      ],
+      "expected_in_scanner": true
+    },
+    {
+      "id": "VWA08",
+      "category": "A02:2021 Cryptographic Failures",
+      "type": "Encryption Key",
+      "cwe": "CWE-321",
+      "description": "Encryption key hardcoded in .env.",
+      "found_in_scanner": [
+        {"file": ".env", "match": "ENCRYPTION_KEY (REDACTED)"}
+      ],
+      "expected_in_scanner": true
+    },
+    {
+      "id": "VWA09",
+      "category": "A07:2021 Identification and Authentication Failures",
+      "type": "Facebook App Secret",
+      "cwe": "CWE-798",
+      "description": "Facebook application secret in .env.",
+      "found_in_scanner": [
+        {"file": ".env", "match": "FACEBOOK_APP_SECRET (REDACTED)"}
+      ],
+      "expected_in_scanner": true
+    },
+    {
+      "id": "VWA10",
+      "category": "A07:2021 Identification and Authentication Failures",
+      "type": "PayPal Client Secret",
+      "cwe": "CWE-798",
+      "description": "PayPal client secret in .env.",
+      "found_in_scanner": [
+        {"file": ".env", "match": "PAYPAL_CLIENT_SECRET (REDACTED)"}
+      ],
+      "expected_in_scanner": true
+    }
+  ]
+}
