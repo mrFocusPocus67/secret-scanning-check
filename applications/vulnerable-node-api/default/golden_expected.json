@@ -1,0 +1,19 @@
+{
+  "application": "vulnerable-node-api",
+  "expected_secrets": [
+    {
+      "id": "VNA01",
+      "category": "A07:2021 Identification and Authentication Failures",
+      "type": "Stripe API Key",
+      "cwe": "CWE-798",
+      "description": "Stripe Access Token hardcoded in the service layer.",
+      "found_in_scanner": [
+        {
+          "file": "src/service/index.js",
+          "match": "Stripe token (REDACTED)"
+        }
+      ],
+      "expected_in_scanner": true
+    }
+  ]
+}
