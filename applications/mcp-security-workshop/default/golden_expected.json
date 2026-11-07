@@ -1,0 +1,83 @@
+{
+  "application": "mcp-security-workshop",
+  "expected_secrets": [
+    {
+      "id": "MCP01",
+      "category": "A07:2021 Identification and Authentication Failures",
+      "type": "Stripe Access Token",
+      "cwe": "CWE-798",
+      "description": "Stripe API key hardcoded in Dockerfile and .env.example.",
+      "found_in_scanner": [
+        {
+          "file": "malicious-mcp-server/Dockerfile",
+          "match": "stripe-access-token (REDACTED)"
+        },
+        {
+          "file": "malicious-mcp-server/.env.example",
+          "match": "stripe-access-token (REDACTED)"
+        }
+      ],
+      "expected_in_scanner": true
+    },
+    {
+      "id": "MCP02",
+      "category": "A07:2021 Identification and Authentication Failures",
+      "type": "Internal API Key",
+      "cwe": "CWE-798",
+      "description": "Internal API key hardcoded in vulnerable-app/index.js and test-mcp-resources.json.",
+      "found_in_scanner": [
+        {
+          "file": "vulnerable-app/index.js",
+          "match": "INTERNAL_API_KEY = REDACTED"
+        },
+        {
+          "file": "test-mcp-resources.json",
+          "match": "INTERNAL_API_KEY = REDACTED"
+        }
+      ],
+      "expected_in_scanner": true
+    },
+    {
+      "id": "MCP03",
+      "category": "A07:2021 Identification and Authentication Failures",
+      "type": "GitHub Token",
+      "cwe": "CWE-798",
+      "description": "GitHub token hardcoded in test-mcp-resources.json.",
+      "found_in_scanner": [
+        {
+          "file": "test-mcp-resources.json",
+          "match": "GITHUB_TOKEN (REDACTED)"
+        }
+      ],
+      "expected_in_scanner": true
+    },
+    {
+      "id": "MCP04",
+      "category": "A07:2021 Identification and Authentication Failures",
+      "type": "Twilio Auth Token",
+      "cwe": "CWE-798",
+      "description": "Twilio Auth Token hardcoded in test-mcp-resources.json.",
+      "found_in_scanner": [
+        {
+          "file": "test-mcp-resources.json",
+          "match": "TWILIO_AUTH_TOKEN (REDACTED)"
+        }
+      ],
+      "expected_in_scanner": true
+    },
+    {
+      "id": "MCP05",
+      "category": "A07:2021 Identification and Authentication Failures",
+      "type": "Slack Webhook URL",
+      "cwe": "CWE-798",
+      "description": "Slack Webhook URL hardcoded in test-mcp-resources.json.",
+      "found_in_scanner": [
+        {
+          "file": "test-mcp-resources.json",
+          "match": "slack-webhook-url (REDACTED)"
+        }
+      ],
+      "expected_in_scanner": true
+    }
+  ]
+}
