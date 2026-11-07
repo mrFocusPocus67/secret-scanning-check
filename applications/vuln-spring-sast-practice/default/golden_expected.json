@@ -1,0 +1,19 @@
+{
+  "application": "vuln-spring-sast-practice",
+  "expected_secrets": [
+    {
+      "id": "VSSP01",
+      "category": "A07:2021 Identification and Authentication Failures",
+      "type": "JDBC Connection String",
+      "cwe": "CWE-798",
+      "description": "JDBC connection string с учетными данными в application.properties.",
+      "found_in_scanner": [
+        {
+          "file": "src/main/resources/application.properties",
+          "match": "JDBC connection string (REDACTED)"
+        }
+      ],
+      "expected_in_scanner": true
+    }
+  ]
+}
