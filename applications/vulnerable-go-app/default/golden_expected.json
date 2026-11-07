@@ -1,0 +1,33 @@
+{
+  "application": "vulnerable-go-app",
+  "expected_secrets": [
+    {
+      "id": "VGA01",
+      "category": "A02:2021 Cryptographic Failures",
+      "type": "Encryption Key",
+      "cwe": "CWE-321",
+      "description": "Encryption key hardcoded in .env file.",
+      "found_in_scanner": [
+        {
+          "file": ".env",
+          "match": "ENCRYPTION_KEY (REDACTED)"
+        }
+      ],
+      "expected_in_scanner": true
+    },
+    {
+      "id": "VGA02",
+      "category": "A07:2021 Identification and Authentication Failures",
+      "type": "MongoDB Connection String",
+      "cwe": "CWE-798",
+      "description": "MongoDB connection string with credentials in .env file.",
+      "found_in_scanner": [
+        {
+          "file": ".env",
+          "match": "MongoDB connection string (REDACTED)"
+        }
+      ],
+      "expected_in_scanner": true
+    }
+  ]
+}
